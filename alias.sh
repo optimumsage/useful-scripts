@@ -29,18 +29,21 @@ add_aliases_to_shell_config() {
   done
 }
 
+# Get the full path of the home directory
+HOME_DIR=$HOME
+
 # Check if Zsh is the current shell
 if [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
   echo "Zsh shell detected."
-  add_aliases_to_shell_config "~/.zshrc"
+  add_aliases_to_shell_config "$HOME_DIR/.zshrc"
 else
   echo "Bash shell detected or another shell is in use."
-  add_aliases_to_shell_config "~/.bashrc"
+  add_aliases_to_shell_config "$HOME_DIR/.bashrc"
 fi
 
 # Source the relevant config file to apply changes immediately
 if [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
-  source ~/.zshrc
+  source "$HOME_DIR/.zshrc"
 else
-  source ~/.bashrc
+  source "$HOME_DIR/.bashrc"
 fi
